@@ -1,0 +1,11 @@
+*, html {
+  padding:0px;
+  margin: 0px;
+  font-family: PragmataPro, consolas, monospace;
+}
+
+html,
+textarea {
+  background: #222;
+  color: #777;
+}
