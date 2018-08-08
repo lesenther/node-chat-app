@@ -9,3 +9,44 @@ textarea {
   background: #222;
   color: #777;
 }
+
+.chatBar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.chatBar input[type=text] {
+  border: 0;
+  background: rgba(100,100,100,0.2);
+  color: #777;
+  font-size: 14px;
+  padding: 2px 4px;
+  min-width:400px;
+}
+.chatBar button {
+  padding: 4px 10px;
+  background: #444;
+  color: #888;
+  border: 0;
+}
+
+#status {
+  font-size: 12px;
+  padding: 4px 2px;
+  color: #80ff80;
+  border-top: 1px solid #333;
+}
+
+#chat {
+  /* outline: 1px solid red; */
+  padding: 10px;
+  margin: 10px;
+  min-height: 100px;
+  max-height: 200px;
+  overflow: auto;
+}
+span.timestamp {
+  font-size: 10px;
+  float: right;
+  color: #666;
+}

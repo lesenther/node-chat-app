@@ -2,15 +2,21 @@
 var socket = io();
 
 // TODO get username 
-var user = 'heyyyy';
+var user = {};
 var sendLocationElement = document.getElementById('sendLocation');
 var sendMessageElement = document.getElementById('sendMessage');
-var welcomeElement = document.getElementById('welcome');
+var welcomeElement = document.getElementById('status');
 var textElement = document.getElementById('newMessageText');
+var chatElement = document.getElementById('chat');
 
-socket.on('connect', function(){
+socket.on('connect', function(u){
   console.log('connected to server');
-  welcomeElement.innerHTML = 'Welcome to the chat app ' + user;
+});
+
+socket.on('setUser', function(data){
+  user = data.user;
+  welcomeElement.innerHTML = 'Welcome to the chat app ' + user.html;
+  textElement.focus();
 });
 
 socket.on('disconnect', function(){
@@ -19,32 +25,42 @@ socket.on('disconnect', function(){
 
 socket.on('newMessage', function(data){
   var newMessage = document.createElement('div');
-   newMessage.innerHTML =    
-    '<span style="font-size:12px;float:right;color:#666;">' + data.createdAt + '</span>' +
+  newMessage.innerHTML =    
     '<strong>' + data.from + '</strong>: ' + 
     '<span class="messageBody">' + data.text + '</span>' + 
+    '<span class="timestamp">' + moment(data.createdAt).format('h:mm a') + '</span>' +
     '';
 
-  document.getElementById('chat').appendChild(newMessage);
+  chatElement.appendChild(newMessage);
+  chatElement.scrollTop = chatElement.scrollHeight;
+  textElement.focus();
 });
 
-// -----------------------------------
+// -----------------------------------------------------------------------------------------
 
+//
+// [ Send Message ]
+//
 sendMessageElement.addEventListener('click', function(){
   var text = textElement.value;
 
-  socket.emit('createMessage', { text }, function(){
+  socket.emit('createMessage', { text }, function(ok){
     textElement.value = '';
   });
 });
 
-
+//
+// [ Send Location ]
+//
 sendLocationElement.addEventListener('click', function(){
+  console.log('Trying to get location...');
+
   if(!navigator.geolocation){
     return alert('Geolocation not supported by your browser');
   }
 
   navigator.geolocation.getCurrentPosition(function(position){
+    console.log('Coordinates found');
     var longitude = position.coords.longitude;
     var latitude = position.coords.latitude;
     socket.emit('createLocationMessage', { latitude, longitude });

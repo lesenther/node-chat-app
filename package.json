@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "test": "mocha server/**/*.test.js",
     "text-watch": "nodemon --exec 'npm test'"
   },
@@ -14,7 +14,9 @@
   "author": "Logan Esenther (le@berkeley.edu)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "moment": "^2.22.2",
+    "randomcolor": "^0.5.3"
   },
   "devDependencies": {
     "expect": "^23.4.0",
