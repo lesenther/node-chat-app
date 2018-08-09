@@ -11,7 +11,12 @@
 <body>
   <h1>9limes Chat</h1>
   <h2>Chat Room</h2>
-  <div id="chat"></div>
+  <div class="chatArea">
+    <!--  -->
+      <ul id="users">
+      </ul>
+      <div id="chat"></div>
+  </div>
   <div class="chatBar">
     <div style="padding:10px;margin:10px;">
       <form name="sendMessage" onsubmit="return false">
@@ -22,10 +27,14 @@
     </div>
     <p id="status">Connecting the chat ....</p>
   </div>
+  <!-- <script id="message-template" type="text/template">
+    <p>{{text}}</p>
+  </script> -->
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="./js/libs/jquery-3.3.1.min.js"></script>
   <script src="./js/libs/moment.js"></script>
+  <!-- <script src="./js/libs/mustache.js"></script> -->
   <script src="./js/index.js"></script>
 </body>
 </html>

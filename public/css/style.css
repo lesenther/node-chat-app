@@ -9,7 +9,11 @@ textarea {
   background: #222;
   color: #777;
 }
-
+.chatArea {
+  position: relative;
+  width: 100%;
+  outline: 1px solid #333;
+}
 .chatBar {
   position: fixed;
   bottom: 0;
@@ -28,6 +32,11 @@ textarea {
   background: #444;
   color: #888;
   border: 0;
+}
+#users {
+  width: 100px;
+  float: right;
+  margin-left: 20px;
 }
 
 #status {
